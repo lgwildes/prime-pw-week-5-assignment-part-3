@@ -2,13 +2,13 @@ console.log('***** Music Collection *****')
 let collection = [];
 function addToCollection (title, artist, yearPublished) {
     let album = {
-        title: '' ,
-        artist: '' ,
-        yearPublished: ''
+        title: title ,
+        artist: artist ,
+        yearPublished: yearPublished
    
 }
 collection.push(album)
-console.log(album)
+return album
 }
-
-console.log(addToCollection('Mmhmmm', 'Relient k', 2004))
+addToCollection('Mmmhmm','Relient k', 2004)
+console.log(collection)
