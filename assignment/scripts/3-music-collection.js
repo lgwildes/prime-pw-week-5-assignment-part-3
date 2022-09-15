@@ -32,9 +32,26 @@ console.log(collection);
 function showCollection(array){
         console.log('the number of items in the array are: ', array.length);
         for(i=0; i<array.length; i++) {
-            console.log(array[i].title)
-          
-           
+        console.log(array[i].title, 'by', array[i].artist,', published in', array[i].yearPublished);
+                 
 }
+
 }
+
+console.log('running showCollection');
 showCollection(collection)
+
+
+function findByArtist(artist, array){
+    let foundArtist = [];
+    for (i=0; i<array.length; i++){
+        if (artist === array[i].artist){
+            foundArtist.push(artist)
+        }
+        
+    }
+    return foundArtist;
+}
+
+console.log(findByArtist('Switchfoot', collection));
+console.log(findByArtist('ACDC', collection));
