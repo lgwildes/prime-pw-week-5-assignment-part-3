@@ -1,11 +1,12 @@
 console.log('***** Music Collection *****')
 let collection = [];
 
-function addToCollection (title, artist, yearPublished) {
+function addToCollection (title, artist, yearPublished, name, duration) {
     let album = {
         title: title ,
         artist: artist ,
-        yearPublished: yearPublished
+        yearPublished: yearPublished,
+        tracks: [name, duration]
     }
       
 collection.push(album) ;
@@ -46,7 +47,7 @@ function findByArtist(artist, array){
     let foundArtist = [];
     for (i=0; i<array.length; i++){
         if (artist === array[i].artist){
-            foundArtist.push(artist)
+            foundArtist.push(array[i])
         }
         
     }
@@ -57,4 +58,20 @@ console.log('Searching for Switchfoot: ' ,findByArtist('Switchfoot', collection)
 console.log('Searching for ACDC: ' ,findByArtist('ACDC', collection));
 
 //STRETCH TIME BABY
+
+
+function search(artist, yearPublished, array){
+    let searchMatch = [];
+    for (i=0; i<array.length; i++){
+        if (artist === array[i].artist && yearPublished === array[i].yearPublished){
+            searchMatch.push(array[i].title)
+            
+        }
+        
+    }
+return searchMatch;
+}
+//Need to add option for no search object or empty search object... need help line 59 readme
+console.log('Searching for Switchfoot 2005' , search('Switchfoot', 2005, collection))
+console.log('Searching for Switchfoot 2004' , search('Switchfoot', 2004, collection))
 
