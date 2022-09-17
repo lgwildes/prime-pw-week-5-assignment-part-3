@@ -74,33 +74,28 @@ console.log('Searching for ACDC: ' ,findByArtist('ACDC', collection)); //expect 
 //STRETCH TIME BABY
 
 //creating search function which has a search object (which has properties for artist, year and trackName) and the collection array as parameters
-let searchMatch = [];
+
 function search( searchingObject, collection){
     if ( !searchingObject){
         console.log('    Sadly, there was no search object found, but check out this awesome collection!');
         return collection;
         //This checks to see if there is no object searched and returns the collection plus a consiliatory message. 
     }
+    let searchMatch = [];
 
     let searchArtist = searchingObject.artist;
     let searchYear = searchingObject.year;
     let searchtrackName = searchingObject.trackName;
      //created variables of the serach object properties to make it easier for me to read and conceptualize within my for loop.
-   
     
     //looping through the collection
     for (let i=0; i<collection.length; i++)  { 
         if(!search.trackName){
             if (searchArtist === collection[i].artist && searchYear === collection[i].yearPublished ){
-            searchMatch.push(collection[i])
+            searchMatch.push(collection[i]);
             //pushing all items (albums) that match the criteria (artist and year) searched
-             }
+             } 
         }
-        
-        else if(searchArtist != collection[i].artist || searchYear != collection[i].yearPublished) {
-            return searchMatch
-        }
-        
         
         else {
             //looping through the tracks to search for an album containing a specific trackName
@@ -115,34 +110,41 @@ function search( searchingObject, collection){
         
     return searchMatch;
 }
-let foundItems = []; //This array displays the object 'title' within the array item which matches the search, this way instead of listing the entire array, it displays just the album.
 
-console.log('==== Searching for Switchfoot 2005 ====' ); //searching for album artist and year
+//Returning text vs. Arrays in console log
+let foundItems = []; //This array can display the object 'title' within the array object which matches the search. This way instead of listing the entire array, it displays just the album or message with collection list.
+
+//==== THIS WORKS ====
+console.log('==== Searching for Switchfoot 2005 with array result ====',
+search({artist: 'Switchfoot', year: '2005', trackName: ''}, collection));
+
+console.log('==== Searching for Switchfoot 2005 with text result ====' ); //searching for album artist and year
 foundItems = search({artist: 'Switchfoot', year: '2005', trackName:''}, collection);
 for(i=0; i<foundItems.length; i++){
-    console.log( '   ', foundItems[i].title ) //logs album by artist in this year
+    console.log( '   ', foundItems[i].title ); //logs album by artist in this year
 }
 
-console.log('==== Searching for album which contains the track Be My Escape ====') //searching for album which contains this track.
+//==== THIS WORKS ====
+console.log('==== Searching for album which contains the track Be My Escape with array result ====',
+search({artist: 'Relient k', year: '2004', trackName: 'Be My Escape'}, collection));
+
+console.log('==== Searching for album which contains the track Be My Escape with text result ====') //searching for album which contains this track.
 foundItems = search({artist: 'Relient k', year: '2004', trackName: 'Be My Escape'}, collection);
 for(i=0; i<foundItems.length; i++){
-    console.log( '   ', foundItems[i].title ) //logs album containing track
+    console.log( '   ', foundItems[i].title ); //logs album containing track
 }
 
-console.log('==== Searching with no object, expect collection list ====')
+// ==== THIS WORKS ====
+console.log('==== Searching with no object, expect collection list in array ====',
+search(null, collection));
+ //logs consiliatory message and collection list
+
+console.log('==== Searching with no object, expect collection list in text ====')
 foundItems = search(null, collection);
 for(i=0; i<foundItems.length; i++){
-    console.log( '   ', foundItems[i].title ) //logs consiliatory message and collection list
+    console.log( '   ', foundItems[i].title ); //logs consiliatory message and collection list
 }
 
-console.log('==== Searching for album with wrong year, expect empty array ====')
-foundItems = search({artist: 'ACDC', year: '2004', trackName: 'Be My Escape'}, collection);
-
-for(i=0; i<foundItems.length; i++){
-    console.log( '   ', foundItems[i].title ) 
-}
-//logs consiliatory message and collection list
-
-
-//console.log('Searching for Switchfoot 2005' , search({artist: 'Switchfoot', year: 2005}, collection));
-//console.log('Searching for Switchfoot 2004' , search({artist:'Switchfoot', year: 2004}, collection));
+//==== THIS WORKS, cannot use foundItems variable to return empty array so had to include search within log. ====
+console.log('==== Searching for album with wrong year, expect empty array ====',
+search({artist: 'ACDC', year: '2004', trackName: 'Be My Escape'}, collection));
